@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Generate Rand</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+	<div class="container">
+	  <nav>
+	    <div class="nav-wrapper">
+	      <a href="#" class="brand-logo center">Generate Random Phone Numbers</a>
+	    </div>
+	  </nav>		
+		<div id="app">
+			<button @click.prevent="genNum" class="waves-effect waves-light btn" style="margin: 0 auto; margin-left: 40%; margin-top: 5%;"> Generate Number </button>
+			  <div class="row">
+			    <form class="col s12">
+			      <div class="row">
+			        <div class="input-field col s12">
+			          <textarea id="textarea1" class="materialize-textarea" v-model="num"></textarea>
+			          <label for="textarea1">Input number of random Phone numbers you need</label>
+			        </div>
+			      </div>
+			    </form>
+			  </div>
+		  	<div class="collection">
+		  		<div v-for="data in data" class="collection-item">
+		  			<div v-if="data.length < 10"> {{ `0${data}` }} </div>
+		  			<div v-else> {{ data }} </div>
+		  		</div>
+
+		  	</div>
+		  <!-- this will no longer update `foo`! -->
+		</div>		
+	</div>
+</body>
+<script type="text/javascript">
+	new Vue({
+	  el: '#app',
+	  data: {
+	  	data: "",
+	  	num: null
+	  },
+	  methods:{
+	  	genNum: function(){
+	  	let number = [];
+	  	let numberOfNumbers = this.num
+
+	  	numberOfNumbers === null ? numberOfNumbers = 5 : numberOfNumbers
+
+		  for(let i = 0; i < numberOfNumbers; i++){
+		      let generatedNum = Math.floor(Math.random() * 1000000000)
+		      number.push(`0${generatedNum.toString()}`)
+		  }
+		  // console.log(number)
+		 this.data = number	  		
+	  	}
+	  }
+	})
+</script>
+</html>	
