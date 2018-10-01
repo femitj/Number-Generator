@@ -43,7 +43,7 @@
 				        <div class="input-field col s12">
 							<div class="input-field col s6">
 								<input id="input_text" type="number" v-model="num">
-								<label for="input_text">Input text</label>
+								<label for="input_text">How mnay numbers do you want to generate?</label>
 							</div>
 							  <div class="input-field col s6">
 							    <select v-model="selectit">
@@ -109,7 +109,7 @@ new Vue({
 		    	let generatedNumStr = generatedNum.toString()
 		    	generatedNumStr.length < 9 ? delete generatedNumStr : number.push(`0${generatedNumStr}`)
 	  		}
-	  		
+
 		 	console.log(number)
 		 	this.data = number	  		
   		}
