@@ -1,4 +1,4 @@
-<img src="fone.png"/>
+<img src="fone.png" width="120px;"/>
 
 # Number-Generator
 
