@@ -1,3 +1,5 @@
+<img src="fone.png"/>
+
 # Number-Generator
 
 A quick number generator for everyone :)
