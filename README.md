@@ -1,7 +1,9 @@
 <p align="center">
 	<img src="fone.png" width="150px;"/>
-	# Get Digit
+
 </p>
+
+# Get Digit
 
 A quick number generator for everyone :)
 
