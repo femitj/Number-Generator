@@ -99,26 +99,27 @@ new Vue({
   	},
   	methods:{
   		genNum: function(){
-  		let number = [];
-  		let numberOfNumbers = this.num
+	  		let number = [];
+	  		let numberOfNumbers = this.num
 
-  		numberOfNumbers === null ? numberOfNumbers = 5 : numberOfNumbers
+	  		numberOfNumbers === null ? numberOfNumbers = 5 : numberOfNumbers
 
-	  	for(let i = 0; i < numberOfNumbers; i++){
-	    	let generatedNum = Math.floor(Math.random() * 1000000000)
-	    	let generatedNumStr = generatedNum.toString()
-	    	generatedNumStr.length < 9 ? delete generatedNumStr : number.push(`0${generatedNumStr}`)
-	  	}
-	 	 console.log(number)
-	 	this.data = number	  		
-  	}
-  },
+	  		while(number.length < numberOfNumbers){
+		    	let generatedNum = Math.floor(Math.random() * 1000000000)
+		    	let generatedNumStr = generatedNum.toString()
+		    	generatedNumStr.length < 9 ? delete generatedNumStr : number.push(`0${generatedNumStr}`)
+	  		}
+	  		
+		 	console.log(number)
+		 	this.data = number	  		
+  		}
+  	},
     mounted () {
 	    var self = this   
 	    $('select').change(function () {
 	     	self.selectit = $(this).val()
 	    })
-  }
+  	}
 })
 </script>
 <style type="text/css">
