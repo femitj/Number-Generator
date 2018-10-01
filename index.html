@@ -63,13 +63,13 @@
 				  		<div v-for="data in data" class="collection-item">
 				  			<div v-if="data.length < 10">
 				  				<div v-if="selectit === 'Nigeria'">
-				  					<div><span class="numbers">+234 - {{ `0${data}` }}</span><i class="material-icons right">phone</i></div>
+				  					<div><span class="numbers">+234 - {{ 0 }}{{ data }}{{ Math.floor(Math.random() * 8 + 1) }}</span><i class="material-icons right">phone</i></div>
 				  				</div>
-				  				<div v-else><span class="numbers">{{ `0${data}` }}</span><i class="material-icons right">phone</i></div>
+				  				<div v-else><span class="numbers">{{ 0 }}{{ data }}</span><i class="material-icons right">phone</i></div>
 				  			</div>
 				  			<div v-else>
 				  				<div v-if="selectit === 'Nigeria'">
-				  					<div><span class="numbers">+234 - {{ data }}</span><i class="material-icons right">phone</i></div>
+				  					<div><span class="numbers">+234 - {{ data }}{{ Math.floor(Math.random() * 8 + 1) }}</span><i class="material-icons right">phone</i></div>
 				  				</div>			  				
 				  				<div v-else><span class="numbers">{{ data }} <i class="material-icons right" >phone</i></span></div>
 				  			</div>
@@ -106,7 +106,8 @@ new Vue({
 
 	  	for(let i = 0; i < numberOfNumbers; i++){
 	    	let generatedNum = Math.floor(Math.random() * 1000000000)
-	     	number.push(`0${generatedNum.toString()}`)
+	    	let generatedNumStr = generatedNum.toString()
+	    	generatedNumStr.length < 9 ? delete generatedNumStr : number.push(`0${generatedNumStr}`)
 	  	}
 	 	 console.log(number)
 	 	this.data = number	  		
