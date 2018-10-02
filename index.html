@@ -3,61 +3,158 @@
 <head>
 	<title>Generate Rand</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-	 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+	<link rel="shortcut icon" href="fone.png">
+
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+
+    <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script> 
+      
+    <script>
+	    $(document).ready(function() {
+	    	$('select').material_select();
+	    });
+    </script>	
 </head>
 <body>
-	<div class="container">
-	  <nav>
-	    <div class="nav-wrapper">
-	      <a href="#" class="brand-logo center">Generate Random Phone Numbers</a>
-	    </div>
-	  </nav>		
-		<div id="app">
-			<button @click.prevent="genNum" class="waves-effect waves-light btn" style="margin: 0 auto; margin-left: 40%; margin-top: 5%;"> Generate Number </button>
-			  <div class="row">
-			    <form class="col s12">
-			      <div class="row">
-			        <div class="input-field col s12">
-			          <textarea id="textarea1" class="materialize-textarea" v-model="num"></textarea>
-			          <label for="textarea1">Input number of random Phone numbers you need</label>
-			        </div>
-			      </div>
-			    </form>
-			  </div>
-		  	<div class="collection">
-		  		<div v-for="data in data" class="collection-item">
-		  			<div v-if="data.length < 10"> {{ `0${data}` }} </div>
-		  			<div v-else> {{ data }} </div>
-		  		</div>
-
-		  	</div>
-		  <!-- this will no longer update `foo`! -->
+	<header class="navbar-fixed">
+		<nav>
+		    <div class="nav-wrapper container">
+		      <a href="#" class="brand-logo center">
+		      	<i class="large material-icons"><span class="phone_iphone">phone_iphone</span></i>
+		      	<span class="Satisfy">Get Digit</span>
+		      </a>
+		    </div>
+		</nav>		
+	</header>
+	<main>
+		<div class="container">
+			<div id="app">
+				<button  @click.prevent="genNum" class="btn red lighten-2 col s12"> Generate Number </button>
+				<!-- <a @click.prevent="genNum" class="waves-effect waves-light red btn col s12" >Generate Number</a>			 -->
+				<div class="row">
+				    <form class="col s12">
+				      <div class="row">
+				        <div class="input-field col s12">
+							<div class="input-field col s6">
+								<input id="input_text" type="number" v-model="num">
+								<label for="input_text">How mnay numbers do you want to generate?</label>
+							</div>
+							  <div class="input-field col s6">
+							    <select v-model="selectit">
+							      <option value="" disabled selected>Choose your option</option>
+							      <option value="Default">Default</option>
+							      <option value="Nigeria">Nigeria</option>
+							    </select>
+							    <label>Choose A Country</label>
+							  </div>							
+				        </div>
+				      </div>
+				    </form>
+				</div>
+				<div v-if="data <= 0">
+					<h3 style="text-align: center; font-family: 'Satisfy';">{{ error }}</h3>
+				</div>
+				<div v-else>
+					<div v-if="data">
+					  	<div class="collection">
+					  		<div v-for="data in data" class="collection-item">
+					  			<div v-if="data.length < 10">
+					  				<div v-if="selectit === 'Nigeria'">
+					  					<div><span class="numbers">+234 - {{ 0 }}{{ data }}{{ Math.floor(Math.random() * 8 + 1) }}</span><i class="material-icons right">phone</i></div>
+					  				</div>
+					  				<div v-else><span class="numbers">{{ 0 }}{{ data }}</span><i class="material-icons right">phone</i></div>
+					  			</div>
+					  			<div v-else>
+					  				<div v-if="selectit === 'Nigeria'">
+					  					<div><span class="numbers">+234 - {{ data }}{{ Math.floor(Math.random() * 8 + 1) }}</span><i class="material-icons right">phone</i></div>
+					  				</div>			  				
+					  				<div v-else><span class="numbers">{{ data }} <i class="material-icons right" >phone</i></span></div>
+					  			</div>
+					  		</div>
+					  	</div>					
+					</div>					
+				</div>
+			</div>		
 		</div>		
-	</div>
+	</main>
+	<footer class="page-footer">
+		<div class="footer-copyright">
+			<div class="container">
+				<span class="rights">© 2018 Copyright</span>
+				<a class="grey-text text-lighten-4 right" href="https://github.com/femitj/Number-Generator"><i class="fab fa-github fa-2x"></i></a>
+			</div>
+		</div>
+    </footer>	
 </body>
 <script type="text/javascript">
-	new Vue({
-	  el: '#app',
-	  data: {
-	  	data: "",
-	  	num: null
-	  },
-	  methods:{
-	  	genNum: function(){
-	  	let number = [];
-	  	let numberOfNumbers = this.num
 
-	  	numberOfNumbers === null ? numberOfNumbers = 5 : numberOfNumbers
+new Vue({
+	el: '#app',
+	data: {
+  		data: "",
+  		num: null,
+  		selectit: '',
+  		error: ''
+  	},
+  	methods:{
+  		genNum: function(){
+	  		let number = [];
+	  		let numberOfNumbers = this.num
 
-		  for(let i = 0; i < numberOfNumbers; i++){
-		      let generatedNum = Math.floor(Math.random() * 1000000000)
-		      number.push(`0${generatedNum.toString()}`)
-		  }
-		  // console.log(number);;
-		 this.data = number	  		
-	  	}
-	  }
-	})
+	  		numberOfNumbers === null ? numberOfNumbers = 5 : numberOfNumbers
+
+	  		if (numberOfNumbers <= 0) {
+	  			this.error = "Something is not right 😩";
+	  		}else{
+		  		while(number.length < numberOfNumbers){
+			    	let generatedNum = Math.floor(Math.random() * 1000000000)
+			    	let generatedNumStr = generatedNum.toString()
+			    	generatedNumStr.length < 9 ? delete generatedNumStr : number.push(`0${generatedNumStr}`)
+		  		}	  			
+	  		}
+
+		 	console.log(number)
+		 	this.data = number	  		
+  		}
+  	},
+    mounted () {
+	    var self = this   
+	    $('select').change(function () {
+	     	self.selectit = $(this).val()
+	    })
+  	}
+})
 </script>
+<style type="text/css">
+	.btn{
+		margin: 0 auto; 
+		margin-left: 40%; 
+		margin-top: 5%;
+	}
+	.numbers{
+		font-size: 20px;
+	}
+	body {
+	    display: flex;
+	    min-height: 100vh;
+	    flex-direction: column;
+	  }
+
+	main {
+	    flex: 1 0 auto;
+	  }
+	 .phone_iphone{
+	 	font-size: 50px;
+	 }
+	.Satisfy{
+		font-family: 'Satisfy';
+	}
+
+</style>
 </html>	

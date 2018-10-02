@@ -1,0 +1,20 @@
+{
+  "name": "Number-Generator",
+  "version": "1.0.0",
+  "description": "A quick number generator for everyone :)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olamilekan000/Number-Generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/olamilekan000/Number-Generator/issues"
+  },
+  "homepage": "https://github.com/olamilekan000/Number-Generator#readme"
+}
